@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louis's Portfolio</title>
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h2>LOUIS.gg</h2>
+
+            <div>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#competencies">Competencies</a>
+                <a href="#projects">Projects</a>
+              <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero reveal">
+            <p>Hello, I'm</p>
+
+            <h1><em>Louis Mario<br>Santiago</em></h1>
+
+            <p>BS Information Systems Graduate</p>
+
+            <a href="#projects">View My Work</a>
+        </section>
+
+        <section id="about" class="reveal">
+            <h2>About Me</h2>
+
+            <p>
+                I'm a recent Information Systems graduate
+            </p>
+        </section>
+
+        <section id="skills" class="reveal">
+            <h2>Skills</h2>
+
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>PHP</li>
+            </ul>
+        </section>
+
+        <section id="competencies" class="reveal">
+            <h2>Core Competencies</h2>
+            <p>
+                
+            </p>
+        </section>
+
+        <section id="projects" class="reveal">
+            <h2>Projects</h2>
+
+            <article>
+                <h3>Buka-Bus — Bus Booking System</h3>
+                <p>
+                    A web-based bus ticket reservation platform built to replace slow,
+                    error-prone manual terminal booking with an automated online system.
+                </p>
+                <button class="view-details-btn" data-modal-target="#bukabus-modal">
+                    View System Details
+                </button>
+            </article>
+
+        </section>
+
+
+<section id="contact" class="reveal">
+    <h2>Get In Touch</h2>
+
+    <p>
+        I'm currently looking for IT Trainee and Technical Support opportunities.
+        Feel free to reach out — I'd love to hear from you.
+    </p>
+
+    <ul class="contact-list">
+        <li>
+            <span class="contact-label">Email</span>
+            <a href="louismariosantiago@gmail.com">louismariosantiago@gmail.com</a>
+        </li>
+        <li>
+            <span class="contact-label">Phone</span>
+            <a href="tel:+63919691303">+63 991 969 1303</a>
+        </li>
+        <li>
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://linkedin.com/in/louismario-" target="_blank" rel="noopener noreferrer">linkedin.com/in/louismario-</a>
+        </li>
+        <li>
+            <span class="contact-label">GitHub</span>
+            <a href="https://github.com/Lucky-Buggy" target="_blank" rel="noopener noreferrer">github.com/Lucky-Buggy</a>
+        </li>
+        <li>
+            <span class="contact-label">Location</span>
+            <span>Malolos City, Philippines</span>
+        </li>
+    </ul>
+</section>
+      
+    </main>
+
+    
+    <div class="modal-overlay" id="bukabus-modal">
+        <div class="modal">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+
+            <h3>Buka-Bus — Bus Booking System</h3>
+
+            <div class="modal-section">
+                <h4>The Challenge</h4>
+                <p>
+                    Bus terminals relied on a fully manual booking process — passengers
+                    lined up at counters, staff tracked seat availability on paper or
+                    basic spreadsheets, and ticket references were handwritten. This led
+                    to overbooking, long queues, and no reliable record of transactions.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h4>The Solution</h4>
+                <p>
+                    Buka-Bus digitizes the entire booking flow into a web application.
+                    Passengers can view trip schedules, pick their own seats, and
+                    receive a confirmed booking instantly, removing manual counter
+                    work and reducing human error.
+                </p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Interactive seat selection map with real-time availability</li>
+                    <li>Automated generation of unique booking reference tickets</li>
+                    <li>Trip and schedule management for administrators</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h4>My Technical Role</h4>
+                <p>
+                    I designed and normalized the database schema (trips, seats,
+                    bookings, passengers) to eliminate redundant data and preserve
+                    integrity, and built the backend booking logic in PHP —
+                    including seat-lock handling to prevent double-booking and
+                    reference number generation on successful transactions.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="portfolio.js"></script>
+</body>
+
+</html>
