@@ -19,7 +19,7 @@
                 <a href="#skills">Skills</a>
                 <a href="#competencies">Competencies</a>
                 <a href="#projects">Projects</a>
-              <a href="#contact">Contact</a>
+                <a href="#contact">Contact</a>
             </div>
         </nav>
     </header>
@@ -57,7 +57,7 @@
         <section id="competencies" class="reveal">
             <h2>Core Competencies</h2>
             <p>
-                
+                <!-- Placeholder: add core competencies content here -->
             </p>
         </section>
 
@@ -77,55 +77,60 @@
 
         </section>
 
+        <section id="contact" class="reveal">
+            <h2>Get In Touch</h2>
 
-<section id="contact" class="reveal">
-    <h2>Get In Touch</h2>
+            <p>
+                I'm currently looking for IT Trainee and Technical Support opportunities.
+                Feel free to reach out — I'd love to hear from you.
+            </p>
 
-    <p>
-        I'm currently looking for IT Trainee and Technical Support opportunities.
-        Feel free to reach out — I'd love to hear from you.
-    </p>
+            <ul class="contact-list">
 
-    <ul class="contact-list">
-        <!-- Hidden Contacts Section -->
-        <div class="hidden-contacts" id="hiddenContacts">
-            <li>
-                <span class="contact-label">Email</span>
-                <a href="mailto:louismariosantiago@gmail.com">louismariosantiago@gmail.com</a>
-            </li>
-            <li>
-                <span class="contact-label">Phone</span>
-                <a href="tel:+63919691303">+63 991 969 1303</a>
-            </li>
-        </div>
+                <!-- Reveal Button -->
+                <li class="contact-reveal-container">
+                    <button id="revealContactsBtn" class="reveal-contacts-btn" aria-pressed="false">
+                        <svg class="icon icon-eye-closed" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                            <line x1="1" y1="1" x2="23" y2="23"/>
+                        </svg>
+                        <svg class="icon icon-eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <span class="reveal-btn-text">Reveal Contact Info</span>
+                    </button>
+                    <small class="contact-hint">(Hidden to deter basic scrapers)</small>
+                </li>
 
-        <!-- Reveal Button -->
-        <li class="contact-reveal-container">
-            <button id="revealContactsBtn" class="reveal-contacts-btn">
-                👁️ Reveal Contact Info
-            </button>
-            <small class="contact-hint">(Hidden to prevent spam)</small>
-        </li>
+                <!-- Hidden until revealed -->
+                <li class="contact-item hidden-contact" data-hidden-contact>
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:louismariosantiago@gmail.com">louismariosantiago@gmail.com</a>
+                </li>
+                <li class="contact-item hidden-contact" data-hidden-contact>
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:+639919691303">+63 991 969 1303</a>
+                </li>
 
-        <!-- Always Visible Contacts -->
-        <li>
-            <span class="contact-label">LinkedIn</span>
-            <a href="https://linkedin.com/in/louismario-" target="_blank" rel="noopener noreferrer">linkedin.com/in/louismario-</a>
-        </li>
-        <li>
-            <span class="contact-label">GitHub</span>
-            <a href="https://github.com/Lucky-Buggy" target="_blank" rel="noopener noreferrer">github.com/Lucky-Buggy</a>
-        </li>
-        <li>
-            <span class="contact-label">Location</span>
-            <span>Malolos City, Philippines</span>
-        </li>
-    </ul>
-</section>
-      
+                <!-- Always visible -->
+                <li>
+                    <span class="contact-label">LinkedIn</span>
+                    <a href="https://linkedin.com/in/louismario-" target="_blank" rel="noopener noreferrer">linkedin.com/in/louismario-</a>
+                </li>
+                <li>
+                    <span class="contact-label">GitHub</span>
+                    <a href="https://github.com/Lucky-Buggy" target="_blank" rel="noopener noreferrer">github.com/Lucky-Buggy</a>
+                </li>
+                <li>
+                    <span class="contact-label">Location</span>
+                    <span>Malolos City, Philippines</span>
+                </li>
+            </ul>
+        </section>
+
     </main>
 
-    
     <div class="modal-overlay" id="bukabus-modal">
         <div class="modal">
             <button class="modal-close" aria-label="Close modal">&times;</button>
@@ -135,9 +140,9 @@
             <div class="modal-section">
                 <h4>The Challenge</h4>
                 <p>
-                    Bus terminals were doing everything by hand. Passengers had to line up at counters. 
-                    Staff wrote down seat availability on paper or used basic spreadsheets. Tickets were 
-                    handwritten. This created a lot of problems. Buses got overbooked. Queues got really 
+                    Bus terminals were doing everything by hand. Passengers had to line up at counters.
+                    Staff wrote down seat availability on paper or used basic spreadsheets. Tickets were
+                    handwritten. This created a lot of problems. Buses got overbooked. Queues got really
                     long. There was no way to track what actually happened.
                 </p>
             </div>
@@ -145,8 +150,8 @@
             <div class="modal-section">
                 <h4>The Solution</h4>
                 <p>
-                    Buka-Bus takes the whole booking process online. Passengers can see available trips, 
-                    pick their own seats, and get a confirmed booking right away. No more standing in line. 
+                    Buka-Bus takes the whole booking process online. Passengers can see available trips,
+                    pick their own seats, and get a confirmed booking right away. No more standing in line.
                     No more paperwork. Staff doesn't have to do the work manually anymore.
                 </p>
             </div>
@@ -163,9 +168,9 @@
             <div class="modal-section">
                 <h4>My Technical Role</h4>
                 <p>
-                    I built the database that keeps everything organized. I made sure trips, seats, bookings, 
-                    and passenger info all connect properly without any mix-ups. Then I wrote the code in PHP 
-                    that handles the actual booking. This includes making sure two people can't book the same 
+                    I built the database that keeps everything organized. I made sure trips, seats, bookings,
+                    and passenger info all connect properly without any mix-ups. Then I wrote the code in PHP
+                    that handles the actual booking. This includes making sure two people can't book the same
                     seat at the same time, and creating the ticket reference number when a booking is complete.
                 </p>
             </div>
