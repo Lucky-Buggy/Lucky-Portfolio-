@@ -87,14 +87,27 @@
     </p>
 
     <ul class="contact-list">
-        <li>
-            <span class="contact-label">Email</span>
-            <a href="mailto:louismariosantiago@gmail.com">louismariosantiago@gmail.com</a>
+        <!-- Hidden Contacts Section -->
+        <div class="hidden-contacts" id="hiddenContacts">
+            <li>
+                <span class="contact-label">Email</span>
+                <a href="mailto:louismariosantiago@gmail.com">louismariosantiago@gmail.com</a>
+            </li>
+            <li>
+                <span class="contact-label">Phone</span>
+                <a href="tel:+63919691303">+63 991 969 1303</a>
+            </li>
+        </div>
+
+        <!-- Reveal Button -->
+        <li class="contact-reveal-container">
+            <button id="revealContactsBtn" class="reveal-contacts-btn">
+                👁️ Reveal Contact Info
+            </button>
+            <small class="contact-hint">(Hidden to prevent spam)</small>
         </li>
-        <li>
-            <span class="contact-label">Phone</span>
-            <a href="tel:+63919691303">+63 991 969 1303</a>
-        </li>
+
+        <!-- Always Visible Contacts -->
         <li>
             <span class="contact-label">LinkedIn</span>
             <a href="https://linkedin.com/in/louismario-" target="_blank" rel="noopener noreferrer">linkedin.com/in/louismario-</a>
