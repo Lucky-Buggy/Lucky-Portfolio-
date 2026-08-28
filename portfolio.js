@@ -1,9 +1,12 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initProjectModal();
   initContactReveal();
   initStickyHeader();
 });
+
 
 function initScrollReveal() {
   const revealEls = document.querySelectorAll(".reveal");
@@ -27,6 +30,14 @@ function initScrollReveal() {
   revealEls.forEach((el) => observer.observe(el));
 }
 
+// --------------------------------------------
+// 2. Project Detail Modal
+// Opens/closes the Buka-Bus modal via:
+// - "View System Details" button
+// - Close (×) button
+// - Clicking the dark overlay
+// - Pressing Escape
+// --------------------------------------------
 function initProjectModal() {
   const openButtons = document.querySelectorAll("[data-modal-target]");
 
@@ -57,62 +68,44 @@ function initProjectModal() {
   });
 }
 
-/**
- * Open a modal and prevent the page behind it from scrolling.
- * @param {Element} modal
- */
+
 function openModal(modal) {
   modal.classList.add("is-open");
-  document.body.style.overflow = "hidden"; // prevent background from scrolling
+  document.body.style.overflow = "hidden";
 }
 
-/**
- * Close a modal and restore page scrolling.
- * @param {Element} modal
- */
+
 function closeModal(modal) {
   modal.classList.remove("is-open");
   document.body.style.overflow = "";
 }
 
-// Reveal contact info with on-off toggle - once revealed, it stays revealed
 function initContactReveal() {
   const revealBtn = document.getElementById("revealContactsBtn");
-  const hiddenContacts = document.getElementById("hiddenContacts");
-  if (!revealBtn || !hiddenContacts) return;
+  const hiddenItems = document.querySelectorAll("[data-hidden-contact]");
+  if (!revealBtn || !hiddenItems.length) return;
 
-  // If the user already revealed contacts this session, show them right away
-  const contactsRevealed = sessionStorage.getItem("contactsRevealed");
-  if (contactsRevealed === "true") {
+  
+  const contactsRevealed = sessionStorage.getItem("contactsRevealed") === "true";
+  if (contactsRevealed) {
     revealContacts();
-  } else {
-    updateButtonIcon(false);
   }
 
   revealBtn.addEventListener("click", () => {
-    const isRevealed = hiddenContacts.classList.contains("revealed");
-    
-    // Only allow revealing, not hiding once revealed
-    if (!isRevealed) {
-      revealContacts();
-    }
+    if (revealBtn.classList.contains("revealed")) return; // one-way toggle, no hiding
+    revealContacts();
   });
 
   function revealContacts() {
-    hiddenContacts.classList.add("revealed");
+    hiddenItems.forEach((item) => item.classList.add("revealed"));
     revealBtn.classList.add("revealed");
-    revealBtn.disabled = false; // Keep button enabled but it won't hide
-    updateButtonIcon(true);
+    revealBtn.setAttribute("aria-pressed", "true");
+    revealBtn.querySelector(".reveal-btn-text").textContent = "Contact Info Revealed";
     sessionStorage.setItem("contactsRevealed", "true");
-  }
-
-  function updateButtonIcon(isRevealed) {
-    revealBtn.textContent = isRevealed ? "👁️" : "👁️‍🗨️";
-    revealBtn.title = isRevealed ? "Contact info revealed" : "Reveal contact info";
   }
 }
 
-// Add a subtle shadow to the header when the page is scrolled
+
 function initStickyHeader() {
   const header = document.querySelector("header");
   if (!header) return;
