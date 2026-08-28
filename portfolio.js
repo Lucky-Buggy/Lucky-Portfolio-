@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initProjectModal();
+  initStickyHeader();
 });
 
 
@@ -79,75 +80,6 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("is-open");
   document.body.style.overflow = "";
-}// - Close (×) button
-// - Clicking the dark overlay
-// - Pressing Escape
-// --------------------------------------------
-function initProjectModal() {
-  const openButtons = document.querySelectorAll("[data-modal-target]");
-
-  openButtons.forEach((btn) => {
-    const modal = document.querySelector(btn.dataset.modalTarget);
-    if (!modal) return;
-
-    btn.addEventListener("click", () => openModal(modal));
-
-    const closeBtn = modal.querySelector(".modal-close");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => closeModal(modal));
-    }
-
-    // Close when clicking outside the modal
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal(modal);
-    });
-  });
-
-  // Close any open modal on Escape
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      document.querySelectorAll(".modal-overlay.is-open").forEach((modal) => {
-        closeModal(modal);
-      });
-    }
-  });
-}
-
-
-function openModal(modal) {
-  modal.classList.add("is-open");
-  document.body.style.overflow = "hidden";
-}
-
-
-function closeModal(modal) {
-  modal.classList.remove("is-open");
-  document.body.style.overflow = "";
-}
-
-function initContactReveal() {
-  const revealBtn = document.getElementById("revealContactsBtn");
-  const hiddenItems = document.querySelectorAll("[data-hidden-contact]");
-  if (!revealBtn || !hiddenItems.length) return;
-
-  
-  const contactsRevealed = sessionStorage.getItem("contactsRevealed") === "true";
-  if (contactsRevealed) {
-    revealContacts();
-  }
-
-  revealBtn.addEventListener("click", () => {
-    if (revealBtn.classList.contains("revealed")) return; // one-way toggle, no hiding
-    revealContacts();
-  });
-
-  function revealContacts() {
-    hiddenItems.forEach((item) => item.classList.add("revealed"));
-    revealBtn.classList.add("revealed");
-    revealBtn.setAttribute("aria-pressed", "true");
-    revealBtn.querySelector(".reveal-btn-text").textContent = "Contact Info Revealed";
-    sessionStorage.setItem("contactsRevealed", "true");
-  }
 }
 
 
