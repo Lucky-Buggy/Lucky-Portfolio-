@@ -75,7 +75,7 @@ function closeModal(modal) {
   document.body.style.overflow = "";
 }
 
-// Reveal hidden contact info for the current browser session
+// Reveal/hide contact info with toggle functionality
 function initContactReveal() {
   const revealBtn = document.getElementById("revealContactsBtn");
   const hiddenContacts = document.getElementById("hiddenContacts");
@@ -84,17 +84,26 @@ function initContactReveal() {
   // If the user already revealed contacts this session, show them right away
   const contactsRevealed = sessionStorage.getItem("contactsRevealed");
   if (contactsRevealed === "true") {
-    revealContacts();
+    toggleContacts(true);
   }
 
-  revealBtn.addEventListener("click", revealContacts);
+  revealBtn.addEventListener("click", () => {
+    const isRevealed = hiddenContacts.classList.contains("revealed");
+    toggleContacts(!isRevealed);
+  });
 
-  function revealContacts() {
-    hiddenContacts.classList.add("revealed");
-    revealBtn.classList.add("revealed");
-    revealBtn.textContent = "✓ Contact Info Revealed";
-    revealBtn.disabled = true;
-    sessionStorage.setItem("contactsRevealed", "true");
+  function toggleContacts(reveal) {
+    if (reveal) {
+      hiddenContacts.classList.add("revealed");
+      revealBtn.classList.add("revealed");
+      revealBtn.textContent = "👁️ Hide Contact Info";
+      sessionStorage.setItem("contactsRevealed", "true");
+    } else {
+      hiddenContacts.classList.remove("revealed");
+      revealBtn.classList.remove("revealed");
+      revealBtn.textContent = "👁️ Reveal Contact Info";
+      sessionStorage.setItem("contactsRevealed", "false");
+    }
   }
 }
 
