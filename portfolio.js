@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initProjectModal();
@@ -6,32 +5,27 @@ document.addEventListener("DOMContentLoaded", () => {
   initStickyHeader();
 });
 
-
 function initScrollReveal() {
   const revealEls = document.querySelectorAll(".reveal");
-
   if (!revealEls.length) return;
 
   const observer = new IntersectionObserver(
-    
     (entries, obs) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          
           obs.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.15, 
+      threshold: 0.15,
       rootMargin: "0px 0px -40px 0px",
     }
   );
 
   revealEls.forEach((el) => observer.observe(el));
 }
-
 
 function initProjectModal() {
   const openButtons = document.querySelectorAll("[data-modal-target]");
@@ -47,51 +41,47 @@ function initProjectModal() {
       closeBtn.addEventListener("click", () => closeModal(modal));
     }
 
-    // Close when clicking the dark overlay (outside the modal box)
-    modal.addEventListener(
-      "click",
-      /** @param {MouseEvent} e */
-      (e) => {
-        if (e.target === modal) closeModal(modal);
-      }
-    );
+    // Close when clicking outside the modal
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal(modal);
+    });
   });
 
-  // Close on Escape key
-  document.addEventListener(
-    "keydown",
-    /** @param {KeyboardEvent} e */
-    (e) => {
-      if (e.key === "Escape") {
-        document.querySelectorAll(".modal-overlay.is-open").forEach((modal) => {
-          closeModal(/** @type {HTMLElement} */ (modal));
-        });
-      }
+  // Close any open modal on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal-overlay.is-open").forEach((modal) => {
+        closeModal(modal);
+      });
     }
-  );
+  });
 }
 
-/** @param {Element} modal */
+/**
+ * Open a modal and prevent the page behind it from scrolling.
+ * @param {Element} modal
+ */
 function openModal(modal) {
   modal.classList.add("is-open");
-  document.body.style.overflow = "hidden"; // lock background scroll
+  document.body.style.overflow = "hidden"; // prevent background from scrolling
 }
 
-/** @param {Element} modal */
+/**
+ * Close a modal and restore page scrolling.
+ * @param {Element} modal
+ */
 function closeModal(modal) {
   modal.classList.remove("is-open");
   document.body.style.overflow = "";
 }
 
-
-/* ===== CONTACT REVEAL FEATURE ===== */
+// Reveal hidden contact info for the current browser session
 function initContactReveal() {
   const revealBtn = document.getElementById("revealContactsBtn");
   const hiddenContacts = document.getElementById("hiddenContacts");
-
   if (!revealBtn || !hiddenContacts) return;
 
-  // Check if contacts were already revealed in this session
+  // If the user already revealed contacts this session, show them right away
   const contactsRevealed = sessionStorage.getItem("contactsRevealed");
   if (contactsRevealed === "true") {
     revealContacts();
@@ -104,14 +94,11 @@ function initContactReveal() {
     revealBtn.classList.add("revealed");
     revealBtn.textContent = "✓ Contact Info Revealed";
     revealBtn.disabled = true;
-    
-    // Store in sessionStorage so it persists during the session
     sessionStorage.setItem("contactsRevealed", "true");
   }
 }
 
-
-/* ===== STICKY HEADER SHADOW ===== */
+// Add a subtle shadow to the header when the page is scrolled
 function initStickyHeader() {
   const header = document.querySelector("header");
   if (!header) return;
