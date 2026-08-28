@@ -75,7 +75,7 @@ function closeModal(modal) {
   document.body.style.overflow = "";
 }
 
-// Reveal/hide contact info with toggle functionality
+// Reveal contact info with on-off toggle - once revealed, it stays revealed
 function initContactReveal() {
   const revealBtn = document.getElementById("revealContactsBtn");
   const hiddenContacts = document.getElementById("hiddenContacts");
@@ -84,26 +84,31 @@ function initContactReveal() {
   // If the user already revealed contacts this session, show them right away
   const contactsRevealed = sessionStorage.getItem("contactsRevealed");
   if (contactsRevealed === "true") {
-    toggleContacts(true);
+    revealContacts();
+  } else {
+    updateButtonIcon(false);
   }
 
   revealBtn.addEventListener("click", () => {
     const isRevealed = hiddenContacts.classList.contains("revealed");
-    toggleContacts(!isRevealed);
+    
+    // Only allow revealing, not hiding once revealed
+    if (!isRevealed) {
+      revealContacts();
+    }
   });
 
-  function toggleContacts(reveal) {
-    if (reveal) {
-      hiddenContacts.classList.add("revealed");
-      revealBtn.classList.add("revealed");
-      revealBtn.textContent = "👁️ Hide Contact Info";
-      sessionStorage.setItem("contactsRevealed", "true");
-    } else {
-      hiddenContacts.classList.remove("revealed");
-      revealBtn.classList.remove("revealed");
-      revealBtn.textContent = "👁️ Reveal Contact Info";
-      sessionStorage.setItem("contactsRevealed", "false");
-    }
+  function revealContacts() {
+    hiddenContacts.classList.add("revealed");
+    revealBtn.classList.add("revealed");
+    revealBtn.disabled = false; // Keep button enabled but it won't hide
+    updateButtonIcon(true);
+    sessionStorage.setItem("contactsRevealed", "true");
+  }
+
+  function updateButtonIcon(isRevealed) {
+    revealBtn.textContent = isRevealed ? "👁️" : "👁️‍🗨️";
+    revealBtn.title = isRevealed ? "Contact info revealed" : "Reveal contact info";
   }
 }
 
