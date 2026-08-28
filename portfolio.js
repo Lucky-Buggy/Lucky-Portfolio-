@@ -2,6 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initProjectModal();
+  initContactReveal();
+  initStickyHeader();
 });
 
 
@@ -79,4 +81,46 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("is-open");
   document.body.style.overflow = "";
+}
+
+
+/* ===== CONTACT REVEAL FEATURE ===== */
+function initContactReveal() {
+  const revealBtn = document.getElementById("revealContactsBtn");
+  const hiddenContacts = document.getElementById("hiddenContacts");
+
+  if (!revealBtn || !hiddenContacts) return;
+
+  // Check if contacts were already revealed in this session
+  const contactsRevealed = sessionStorage.getItem("contactsRevealed");
+  if (contactsRevealed === "true") {
+    revealContacts();
+  }
+
+  revealBtn.addEventListener("click", revealContacts);
+
+  function revealContacts() {
+    hiddenContacts.classList.add("revealed");
+    revealBtn.classList.add("revealed");
+    revealBtn.textContent = "✓ Contact Info Revealed";
+    revealBtn.disabled = true;
+    
+    // Store in sessionStorage so it persists during the session
+    sessionStorage.setItem("contactsRevealed", "true");
+  }
+}
+
+
+/* ===== STICKY HEADER SHADOW ===== */
+function initStickyHeader() {
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
 }
