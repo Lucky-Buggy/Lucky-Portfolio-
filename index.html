@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louis's Portfolio</title>
+    <meta name="description" content="Portfolio of Louis Mario Santiago, a BS Information Systems graduate focused on frontend development with HTML, CSS and JavaScript.">
+    <title>Louis Mario Santiago | Frontend Development Portfolio</title>
     <link rel="stylesheet" href="portfolio.css">
 </head>
 
@@ -14,10 +15,13 @@
         <nav>
             <h2>LOUIS.gg</h2>
 
-            <div>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div id="nav-links" class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
-                <a href="#competencies">Competencies</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -27,66 +31,100 @@
     <main>
 
         <section class="hero reveal">
-            <p>Hello, I'm</p>
+            <!--
+                OPTIONAL PROFILE PHOTO: add a small photo (e.g. images/profile.jpg)
+                by putting this line just above the <p>Hello, I'm</p> line:
+                <img class="hero-photo" src="images/profile.jpg" alt="Louis Mario Santiago" width="96" height="96">
+            -->
+            <p class="hero-hello">Hello, I'm</p>
 
             <h1><em>Louis Mario<br>Santiago</em></h1>
 
-            <p>BS Information Systems Graduate</p>
+            <p class="hero-role">BS Information Systems Graduate</p>
+            <p class="hero-focus">Frontend Development &bull; HTML &bull; CSS &bull; JavaScript</p>
 
-            <a href="#projects">View My Work</a>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/Lucky-Buggy" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="resume/Louis-Mario-Santiago-Resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
         </section>
 
         <section id="about" class="reveal">
             <h2>About Me</h2>
 
             <p>
-                I'm a recent Information Systems graduate
+                I'm a BS Information Systems graduate focused on frontend development.
+                I build websites with HTML, CSS and JavaScript, and I use my projects
+                to keep learning and improving. I'm looking for an entry-level role
+                where I can keep building and learn from a team.
             </p>
         </section>
 
         <section id="skills" class="reveal">
             <h2>Skills</h2>
 
+            <h3 class="skill-group">Frontend</h3>
             <ul>
                 <li>HTML</li>
                 <li>CSS</li>
-                <li>PHP</li>
+                <li>JavaScript</li>
             </ul>
-        </section>
 
-        <section id="competencies" class="reveal">
-            <h2>Core Competencies</h2>
-            <p>
-                <!-- Placeholder: add core competencies -->
-            </p>
+            <h3 class="skill-group">Other</h3>
+            <ul>
+                <li>Responsive Web Design</li>
+                <li>Git/GitHub</li>
+                <li>Basic Troubleshooting</li>
+            </ul>
         </section>
 
         <section id="projects" class="reveal">
             <h2>Projects</h2>
 
-            <article>
-                <h3>Buka-Bus — Bus Booking System</h3>
-                <p>
-                    A web-based bus ticket reservation platform built to replace slow,
-                    error-prone manual terminal booking with an automated online system.
-                </p>
-                <button class="view-details-btn" data-modal-target="#bukabus-modal">
-                    View System Details
-                </button>
-            </article>
+            <div class="project-grid">
 
+                <article class="project">
+                    <figure class="project-shot is-phone">
+                        <img src="images/rps-luckyhand.webp" alt="RPS LuckyHand game screen showing the computer's and player's cards, the score, and a Computer Wins result" width="566" height="900" loading="lazy">
+                    </figure>
+                    <div class="project-info">
+                        <h3>RPS LuckyHand</h3>
+                        <p>Luck-based Rock Paper Scissors game.</p>
+                        <div class="project-links">
+                            <a href="https://lucky-buggy.github.io/RPS-LuckyHand/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                            <a href="https://github.com/Lucky-Buggy/RPS-LuckyHand" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <figure class="project-shot is-phone">
+                        <img src="images/marci-hero.webp" alt="Marci Metzger redesign: mobile header and hero with a lake and mountain photo and the headline Pahrump Realtor" width="507" height="900" loading="lazy">
+                        <img src="images/marci-stats.webp" alt="Marci Metzger redesign: dark Get It Sold section with sales statistics" width="570" height="900" loading="lazy">
+                    </figure>
+                    <div class="project-info">
+                        <h3>Marci Metzger Redesign</h3>
+                        <p>Realtor website redesign (hiring assignment).</p>
+                        <div class="project-links">
+                            <a href="https://lucky-buggy.github.io/marci/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                            <a href="https://github.com/Lucky-Buggy/marci" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+
+            </div>
         </section>
 
         <section id="contact" class="reveal">
             <h2>Get In Touch</h2>
 
             <p>
-                I'm currently looking for IT Trainee and Technical Support opportunities.
-                Feel free to reach out.
+                I'm looking for a junior web developer role. Feel free to reach out.
             </p>
 
             <ul class="contact-list">
-
                 <li>
                     <span class="contact-label">Email</span>
                     <a href="mailto:louismariosantiago@gmail.com">louismariosantiago@gmail.com</a>
@@ -95,8 +133,6 @@
                     <span class="contact-label">Phone</span>
                     <a href="tel:+639919691303">+63 991 969 1303</a>
                 </li>
-
-                <!-- Always visible -->
                 <li>
                     <span class="contact-label">LinkedIn</span>
                     <a href="https://linkedin.com/in/louismario-" target="_blank" rel="noopener noreferrer">linkedin.com/in/louismario-</a>
@@ -114,53 +150,13 @@
 
     </main>
 
-    <div class="modal-overlay" id="bukabus-modal">
-        <div class="modal">
-            <button class="modal-close" aria-label="Close modal">&times;</button>
+    <footer>
+        <p>&copy; 2026 Louis Mario Santiago</p>
+    </footer>
 
-            <h3>Buka-Bus — Bus Booking System</h3>
-
-            <div class="modal-section">
-                <h4>The Challenge</h4>
-                <p>
-                    Bus terminals were doing everything by hand. Passengers had to line up at counters.
-                    Staff wrote down seat availability on paper or used basic spreadsheets. Tickets were
-                    handwritten. This created a lot of problems. Buses got overbooked. Queues got really
-                    long. There was no way to track what actually happened.
-                </p>
-            </div>
-
-            <div class="modal-section">
-                <h4>The Solution</h4>
-                <p>
-                    Buka-Bus takes the whole booking process online. Passengers can see available trips,
-                    pick their own seats, and get a confirmed booking right away. No more standing in line.
-                    No more paperwork. Staff doesn't have to do the work manually anymore.
-                </p>
-            </div>
-
-            <div class="modal-section">
-                <h4>Key Features</h4>
-                <ul>
-                    <li>Interactive seat selection map with real-time availability</li>
-                    <li>Automated generation of unique booking reference tickets</li>
-                    <li>Trip and schedule management for administrators</li>
-                </ul>
-            </div>
-
-            <div class="modal-section">
-                <h4>My Technical Role</h4>
-                <p>
-                    I built the database that keeps everything organized. I made sure trips, seats, bookings,
-                    and passenger info all connect properly without any mix-ups. Then I wrote the code in PHP
-                    that handles the actual booking. This includes making sure two people can't book the same
-                    seat at the same time, and creating the ticket reference number when a booking is complete.
-                </p>
-            </div>
-        </div>
-    </div>
 
     <script src="portfolio.js"></script>
 </body>
 
-</html>
+                    </html>
+                    
