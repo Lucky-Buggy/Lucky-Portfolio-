@@ -1,8 +1,8 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
+  initNavigation();
   initProjectModal();
-  initStickyHeader();
+  initScreenshotFallback();
 });
 
 
@@ -12,23 +12,55 @@ function initScrollReveal() {
   if (!revealEls.length) return;
 
   const observer = new IntersectionObserver(
-    
     (entries, obs) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
-          
           obs.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.15, 
+      // low threshold so tall sections (like Projects) on a phone still appear
+      threshold: 0.01,
       rootMargin: "0px 0px -40px 0px",
     }
   );
 
   revealEls.forEach((el) => observer.observe(el));
+}
+
+
+// Mobile menu + shadow under the sticky header
+function initNavigation() {
+  const header = document.querySelector("header");
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.querySelector("#nav-links");
+
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 10);
+  });
+
+  if (!toggle || !menu) return;
+
+  function setMenu(open) {
+    menu.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  }
+
+  toggle.addEventListener("click", () => {
+    setMenu(!menu.classList.contains("is-open"));
+  });
+
+  // close the menu after tapping a link
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+
+  // close if the screen is resized back to desktop width
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 700) setMenu(false);
+  });
 }
 
 
@@ -47,51 +79,37 @@ function initProjectModal() {
     }
 
     // Close when clicking the dark overlay (outside the modal box)
-    modal.addEventListener(
-      "click",
-      /** @param {MouseEvent} e */
-      (e) => {
-        if (e.target === modal) closeModal(modal);
-      }
-    );
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal(modal);
+    });
   });
 
   // Close on Escape key
-  document.addEventListener(
-    "keydown",
-    /** @param {KeyboardEvent} e */
-    (e) => {
-      if (e.key === "Escape") {
-        document.querySelectorAll(".modal-overlay.is-open").forEach((modal) => {
-          closeModal(/** @type {HTMLElement} */ (modal));
-        });
-      }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal-overlay.is-open").forEach((modal) => {
+        closeModal(modal);
+      });
     }
-  );
+  });
 }
 
-/** @param {Element} modal */
 function openModal(modal) {
   modal.classList.add("is-open");
   document.body.style.overflow = "hidden"; // lock background scroll
 }
 
-/** @param {Element} modal */
 function closeModal(modal) {
   modal.classList.remove("is-open");
   document.body.style.overflow = "";
 }
 
+function initScreenshotFallback() {
+  document.querySelectorAll(".project-shot img").forEach((img) => {
+    const markMissing = () => img.parentElement.classList.add("is-missing");
 
-function initStickyHeader() {
-  const header = document.querySelector("header");
-  if (!header) return;
+    img.addEventListener("error", markMissing);
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
+    if (img.complete && img.naturalWidth === 0) markMissing();
   });
-}
+  }
