@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Louis Mario Santiago, a BS Information Systems graduate focused on frontend development with HTML, CSS and JavaScript.">
     <title>Louis Mario Santiago | Frontend Development Portfolio</title>
+    <meta name="theme-color" content="#111111">
+    <script>
+        try {
+            var saved = localStorage.getItem("theme");
+            if (saved === "light" || saved === "dark") {
+                document.documentElement.setAttribute("data-theme", saved);
+            }
+        } catch (e) { }
+    </script>
     <link rel="stylesheet" href="portfolio.css">
 </head>
 
@@ -15,15 +24,28 @@
         <nav>
             <h2>LOUIS.gg</h2>
 
-            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="nav-right">
+                <div id="nav-links" class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#resume">Resume</a>
+                    <a href="#contact">Contact</a>
+                </div>
 
-            <div id="nav-links" class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <button class="theme-toggle" type="button" aria-label="Switch to light mode">
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </nav>
     </header>
@@ -42,7 +64,7 @@
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="https://github.com/Lucky-Buggy" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="resume/Louis-Mario-Santiago-Resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a href="#resume" class="btn">Resume</a>
             </div>
         </section>
 
@@ -113,6 +135,23 @@
             </div>
         </section>
 
+        <section id="resume" class="reveal">
+            <h2>Resume</h2>
+
+            <div class="resume-buttons">
+                <a href="resume/Louis-Mario-Santiago-Resume.pdf" class="btn btn-primary" download>Download Resume</a>
+                <a href="resume/Louis-Mario-Santiago-Resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Open in New Tab</a>
+            </div>
+
+            <div class="resume-viewer">
+                
+                <iframe class="resume-frame" data-src="resume/Louis-Mario-Santiago-Resume.pdf#view=FitH" title="Louis Mario Santiago resume (PDF)"></iframe>
+
+              
+                <img class="resume-preview" src="images/resume-preview.webp" alt="Preview of Louis Mario Santiago's one-page resume" width="1105" height="1430" loading="lazy">
+            </div>
+        </section>
+
         <section id="contact" class="reveal">
             <h2>Get In Touch</h2>
 
@@ -154,4 +193,5 @@
     <script src="portfolio.js"></script>
 </body>
 
-</html>
+                        </html>
+                        
