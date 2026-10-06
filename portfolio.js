@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   initProjectModal();
   initScreenshotFallback();
+  initThemeToggle();
+  initResumeViewer();
 });
 
 
@@ -112,4 +114,49 @@ function initScreenshotFallback() {
 
     if (img.complete && img.naturalWidth === 0) markMissing();
   });
+}
+
+
+// Light / dark mode. The saved choice is applied early by a small script in
+// index.html <head>; this handles the button and saving the choice.
+function initThemeToggle() {
+  const btn = document.querySelector(".theme-toggle");
+  const root = document.documentElement;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+
+  if (!btn) return;
+
+  function update() {
+    const isLight = root.getAttribute("data-theme") === "light";
+    btn.setAttribute(
+      "aria-label",
+      isLight ? "Switch to dark mode" : "Switch to light mode"
+    );
+    if (themeColor) themeColor.setAttribute("content", isLight ? "#f1f1ef" : "#111111");
   }
+
+  btn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {
+      // storage can be blocked; the theme still changes for this visit
+    }
+    update();
+  });
+
+  update();
+}
+
+function initResumeViewer() {
+  const section = document.querySelector("#resume");
+  const frame = document.querySelector(".resume-frame");
+  if (!section || !frame) return;
+
+  if (navigator.pdfViewerEnabled === true) {
+    frame.src = frame.dataset.src;
+  } else {
+    section.classList.add("no-pdf-viewer");
+  }
+}
