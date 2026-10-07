@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initNavigation();
-  initProjectModal();
   initScreenshotFallback();
   initThemeToggle();
   initResumeViewer();
@@ -65,46 +64,6 @@ function initNavigation() {
   });
 }
 
-
-function initProjectModal() {
-  const openButtons = document.querySelectorAll("[data-modal-target]");
-
-  openButtons.forEach((btn) => {
-    const modal = document.querySelector(btn.dataset.modalTarget);
-    if (!modal) return;
-
-    btn.addEventListener("click", () => openModal(modal));
-
-    const closeBtn = modal.querySelector(".modal-close");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => closeModal(modal));
-    }
-
-    // Close when clicking the dark overlay (outside the modal box)
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal(modal);
-    });
-  });
-
-  // Close on Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      document.querySelectorAll(".modal-overlay.is-open").forEach((modal) => {
-        closeModal(modal);
-      });
-    }
-  });
-}
-
-function openModal(modal) {
-  modal.classList.add("is-open");
-  document.body.style.overflow = "hidden"; // lock background scroll
-}
-
-function closeModal(modal) {
-  modal.classList.remove("is-open");
-  document.body.style.overflow = "";
-}
 
 function initScreenshotFallback() {
   document.querySelectorAll(".project-shot img").forEach((img) => {
